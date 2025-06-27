@@ -29,8 +29,8 @@ const ContactUs = () => {
                             <i className="fas fa-map-marker-alt"></i>
                         </div>
                         <div className="details">
-                            <h3>Oficina Principal</h3>
-                            <p>Av. Insurgentes Sur 1234, Col. Condesa, CDMX</p>
+                            <h3>Ubicación</h3>
+                            <p>Colina de La Paz 25, Lomas Verdes, Boulevares, 53140 Naucalpan de Juárez, Méx.</p>
                         </div>
                     </div>
                     
@@ -60,7 +60,7 @@ const ContactUs = () => {
                         </div>
                         <div className="details">
                             <h3>Email</h3>
-                            <a href="mailto:contacto@raicesrealty.com">contacto@raicesrealty.com</a>
+                            <a href="mailto:contacto@raicesrealty.com">raicesrealty@gmail.com</a>
                         </div>
                     </div>
                     
@@ -70,8 +70,8 @@ const ContactUs = () => {
                         </div>
                         <div className="details">
                             <h3>Horario</h3>
-                            <p>Lunes a Viernes: 9:00 - 18:00</p>
-                            <p>Sábados: 10:00 - 14:00</p>
+                            <p>Lunes a Viernes: 9:00am - 21:00pm</p>
+                            <p>Sábados: 10:00am - 21:00pm</p>
                         </div>
                     </div>
                 </div>
@@ -86,7 +86,7 @@ const ContactUs = () => {
                 <div className="map-container">
                     <iframe 
                         title="Ubicación Raices Realty"
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3762.888244552543!2d-99.1776906845339!3d19.41990124612245!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d1ff37585f3f3b%3A0x6c7f5a3a9f6c1b1e!2sAv.%20Insurgentes%20Sur%201234%2C%20Col.%20Condesa%2C%20CDMX!5e0!3m2!1ses!2smx!4v1620000000000!5m2!1ses!2smx" 
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.0655582138916!2d-99.24960022478405!3d19.495815081797065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d203dc3a6fa0b5%3A0x7cb33f1f838b4cf1!2sGran%20Terraza%20Lomas%20Verdes!5e0!3m2!1sen!2sca!4v1751002311720!5m2!1sen!2sca" 
                         allowFullScreen="" 
                         loading="lazy"
                     ></iframe>

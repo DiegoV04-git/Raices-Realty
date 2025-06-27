@@ -24,7 +24,7 @@ const Navbar = () => {
           <i className="fab fa-whatsapp"></i> WhatsApp
         </a>
         <a
-          href="mailto:diegovidales0104@gmail.com"
+          href="mailto:raicesrealty@gmail.com"
           className="navbar-email"
         >
           <i className="fas fa-envelope"></i> Email
