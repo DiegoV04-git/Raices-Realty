@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="footer-links">
             <Link to="/propietarios">Propietarios</Link>
             <Link to="/">Inicio</Link>
-            <Link to="/contacto" onClick={() => setIsMenuOpen(false)}>Contáctanos</Link>
+            <Link to="/contacto">Contáctanos</Link>
             </div>
             <div className="footer-social">
                 <a href="https://facebook.com" target="_blank" rel="noopnener noreferrer">
