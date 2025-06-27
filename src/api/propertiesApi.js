@@ -1,13 +1,13 @@
 export const fetchProperties = async () => {
     try {
-        const reponse = await fetch('http://localhost:5001/propiedades');
-        if(!reponse.ok){
-            throw new Error('Error al obtener las propiedades');
-        }
-        return await reponse.json();
+      const response = await fetch('/propiedades.json');
+      if (!response.ok) throw new Error('Error al obtener las propiedades');
+      const data = await response.json();
+      // Si tu JSON original era { "propiedades": [...] }, devuelve:
+      return data.propiedades;
     } catch (error) {
-        console.error(error);
-        return []; // Devuelve un array vacío en caso de error
+      console.error(error);
+      return [];
     }
-};
-
+  };
+  
