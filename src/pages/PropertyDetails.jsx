@@ -3,35 +3,32 @@ import { useParams } from "react-router-dom";
 import Slider from "react-slick";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
-import "../styles/PropertyDetails.scss";
 import { PrevArrow, NextArrow } from "../components/CustomArrows";
+import { fetchProperties } from "../api/propertiesApi";
+import "../styles/PropertyDetails.scss";
 
 const PropertyDetails = () => {
   const { id } = useParams();
   const [propiedad, setPropiedad] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [selectedImage, setSelectedImage] = useState(null); // Imagen seleccionada
-  const [modalOpen, setModalOpen] = useState(false); // Estado del modal
-
-  const fetchPropertyDetails = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch(`http://localhost:5001/propiedades/${id}`);
-      if (!response.ok) {
-        throw new Error("Error al obtener los datos de la propiedad");
-      }
-      const data = await response.json();
-      setPropiedad(data);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    fetchPropertyDetails();
+    const loadProperty = async () => {
+      try {
+        setLoading(true);
+        const all = await fetchProperties(); // trae el array completo
+        const found = all.find((p) => String(p.id) === String(id));
+        if (!found) throw new Error("Propiedad no encontrada");
+        setPropiedad(found);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProperty();
   }, [id]);
 
   const settings = {
@@ -44,14 +41,15 @@ const PropertyDetails = () => {
     nextArrow: <NextArrow />,
   };
 
-  const openModal = (image) => {
-    setSelectedImage(image); // Establece la imagen seleccionada
-    setModalOpen(true); // Abre el modal
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const openModal = (img) => {
+    setSelectedImage(img);
+    setModalOpen(true);
   };
-
   const closeModal = () => {
-    setSelectedImage(null); // Limpia la imagen seleccionada
-    setModalOpen(false); // Cierra el modal
+    setSelectedImage(null);
+    setModalOpen(false);
   };
 
   if (loading) {
@@ -77,14 +75,15 @@ const PropertyDetails = () => {
   return (
     <div className="property-details-page">
       <Navbar />
+
       <div className="property-details-container">
-        {/* Carrusel */}
+        {/* Carrusel de imágenes */}
         <div className="property-slider">
           <Slider {...settings}>
-            {propiedad.imagenes.map((imagen, index) => (
-              <div key={index} onClick={() => openModal(imagen)}>
-              <img src={imagen} alt={`Imagen ${index + 1}`} />
-</div>
+            {propiedad.imagenes.map((img, idx) => (
+              <div key={idx} onClick={() => openModal(img)}>
+                <img src={img} alt={`Imagen ${idx + 1}`} />
+              </div>
             ))}
           </Slider>
         </div>
@@ -93,7 +92,7 @@ const PropertyDetails = () => {
         <h1>{propiedad.nombre}</h1>
         <p className="price">${propiedad.precio}</p>
 
-        {/* Contenedor estilizado para propiedades */}
+        {/* Características */}
         <div className="property-info">
           <div className="property-feature">
             <span className="icon">📍</span>
@@ -113,37 +112,39 @@ const PropertyDetails = () => {
           </div>
           <div className="property-feature">
             <span className="icon">📐</span>
-            <span className="text">{propiedad.metros_construidos}m² Construidos</span>
+            <span className="text">{propiedad.metros_construidos} m² Construidos</span>
           </div>
           <div className="property-feature">
             <span className="icon">🌳</span>
-            <span className="text">{propiedad.metros_terreno}m² Terreno</span>
+            <span className="text">{propiedad.metros_terreno} m² Terreno</span>
           </div>
         </div>
+
+        {/* Descripción */}
         <div className="property-description">
-            <span className="property-desc-title">MÁS SOBRE LA PROPIEDAD</span>
-            <span className="property-desc">{propiedad.descripcion}</span>
+          <span className="property-desc-title">MÁS SOBRE LA PROPIEDAD</span>
+          <span className="property-desc">{propiedad.descripcion}</span>
         </div>
 
         {/* Mapa */}
         <div className="property-map">
-            <h2>Ubicación</h2>
-            <p className="ubicacion-aviso">
-              * Ubicación aproximada por privacidad y seguridad del propietario.
-            </p>
-            <iframe
-              title="Google Maps"
-              src={`https://www.google.com/maps?q=${propiedad.ubicacion_mapa.lat},${propiedad.ubicacion_mapa.lng}&z=15&output=embed`}
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-            />
-          </div>
+          <h2>Ubicación</h2>
+          <p className="ubicacion-aviso">
+            * Ubicación aproximada por privacidad y seguridad del propietario.
+          </p>
+          <iframe
+            title="Google Maps"
+            src={`https://www.google.com/maps?q=${propiedad.ubicacion_mapa.lat},${propiedad.ubicacion_mapa.lng}&z=15&output=embed`}
+            width="100%"
+            height="400"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+          />
+        </div>
       </div>
 
-      {/* Modal para mostrar la imagen ampliada */}
+      {/* Modal de imagen ampliada */}
       {modalOpen && (
         <div className="modal" onClick={closeModal}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
@@ -160,4 +161,4 @@ const PropertyDetails = () => {
   );
 };
 
-export default PropertyDetails
+export default PropertyDetails;
