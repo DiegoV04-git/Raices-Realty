@@ -1,0 +1,142 @@
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  /* Submit Message */
+  .submit-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    
+    &.success {
+      background-color: rgba(76, 175, 80, 0.2);
+      color: #2e7d32;
+      border: 1px solid #2e7d32;
+    }
+    
+    &.error {
+      background-color: rgba(244, 67, 54, 0.2);
+      color: #c62828;
+      border: 1px solid #c62828;
+    }
+
+    .status-icon {
+      font-size: 1.2rem;
+      vertical-align: middle;
+    
+      &.success-icon {
+        color: #2e7d32;
+      }
+    
+      &.error-icon {
+        color: #c62828;
+      }
+    }
+    
+  }
+
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #444;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 90%;
+      max-width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+      background-color: #fff;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+      transition: all 0.25s ease;
+
+
+      &:focus {
+        outline: none;
+        border-color: #ff6f61;
+        box-shadow: 0 0 0 3px rgba(255, 111, 97, 0.2);
+      }
+    }
+
+    textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    select {
+      appearance: none;
+      background: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e") no-repeat right 15px center;
+      background-size: 1em;
+      background-color: #fff;
+    }
+  }
+
+  /* Submit Button */
+  .submit-button {
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    &:hover {
+      background-color: #e65c50;
+      transform: translateY(-2px);
+    }
+
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+    }
+
+    .fa-spinner {
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Responsive */
+  @media (max-width: 480px) {
+    .form-group {
+      margin-bottom: 15px;
+
+      input, textarea, select {
+        padding: 10px 12px;
+        width: 90%;
+      }
+    }
+    
+    .submit-button {
+      padding: 10px 20px;
+    }
+  }
+}

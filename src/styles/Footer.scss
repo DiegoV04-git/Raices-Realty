@@ -1,0 +1,157 @@
+.footer {
+  background-color: #222;
+  color: #fff;
+  padding: 20px 40px;
+  text-align: center;
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin-bottom: 30px;
+
+    .footer-logo img {
+      height: 120px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+      
+      &:hover {
+        transform: scale(1.05);
+      }
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      flex-wrap: wrap;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto; // <- este es el fix
+      align-items: center;
+      padding: 0 1rem;
+
+      a {
+        text-decoration: none;
+        color: #fff;
+        font-size: 1.5rem;
+        position: relative;
+        transition: color 0.3s ease;
+
+        &:hover {
+          color: #ff6f61;
+        }
+
+        &::after {
+          content: "";
+          position: absolute;
+          bottom: -4px;
+          left: 0;
+          width: 0%;
+          height: 2px;
+          background-color: #ff6f61;
+          transition: width 0.3s ease;
+        }
+
+        &:hover::after {
+          width: 100%;
+        }
+      }
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+
+      a {
+        color: #fff;
+        font-size: 1.2rem;
+        transition: transform 0.3s ease, color 0.3s ease;
+
+        &:hover {
+          color: #ff6f61;
+          transform: translateY(-3px)
+        }
+      }
+    }
+  }
+
+  .footer-bottom {
+    border-top: 1px solid #444;
+    padding-top: 15px;
+
+    p {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin: 0;
+    }
+  }
+  @media (max-width: 768px) {
+    .footer-content {
+      flex-direction: column;
+      gap: 15px;
+    }
+  
+    .footer-links {
+      display: flex;
+      flex-direction: column; /* ítems apilados */
+      gap: 10px;
+      align-items: center;    /* ACÁ centramos horizontalmente */
+      justify-content: center; /* opcional: centra verticalmente */
+    }
+  
+    .footer-social {
+      gap: 10px;
+    }
+  
+    .footer-logo img {
+      height: 100px;
+    }
+  }
+  
+
+  @media (max-width: 480px) {
+    .footer-content {
+      gap: 10px;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+  
+      width: fit-content !important;   // ✅ fuerza el ancho al mínimo necesario
+      margin: 0 auto !important;       // ✅ centra horizontalmente
+      padding: 0 !important;           // ✅ evita padding que extienda el ancho
+      background: transparent !important; // opcional: borra el fondo debug si estorba
+      outline: none !important;          // opcional: remueve borde si lo dejaste
+    }
+  
+    .footer-links a {
+      font-size: 1.2rem;
+      line-height: 1.4;
+      text-align: center;
+      width: fit-content;
+      margin: 0;
+      padding: 0.2rem 0;
+    }
+  
+    .footer-social a {
+      font-size: 1rem;
+    }
+  
+    .footer-logo img {
+      height: 80px;
+    }
+  }
+  
+  
+}
+
