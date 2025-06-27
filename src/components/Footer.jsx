@@ -1,5 +1,5 @@
 import React from "react";
-import "../styles/footer.scss"; // Import the SCSS file for styling
+import "../styles/Footer.scss"; // Import the SCSS file for styling
 import {Link} from 'react-router-dom'
 
 const Footer = () => {
